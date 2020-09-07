@@ -1,0 +1,11 @@
+Data cleaning: Preparing raw data for use in data processing pipelines.
+
+Data cleaning is often performed to increase performance and organize data flow.
+
+Spark has the advantage of being scalable, allowing it to work well with large quantities of data.
+
+Schemas can be used to validate data in numerous ways (E.g. number and types of columns).
+
+Schemas can be used to filter bad data.
+
+Schemas come with performance benefits: a data import will try to infer a schema on read which requires reading data twice. Defining a schema limits this to a single read operation.
