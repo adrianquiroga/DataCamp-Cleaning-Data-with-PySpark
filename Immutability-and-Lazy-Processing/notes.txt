@@ -1,0 +1,5 @@
+Python variables are mutable (They can be changed at any time assuming scope of variable is valid) which can cause problems when there are concurrent components trying to modify data. There are solutions to this but they add complexity.
+
+Spark dataframes are immutable, which is often a component of functional programming. Spark dataframes are defined once and unable to be modified after initialization. Reusing variable names removes original data (Assuming it is not used elsewhere) and variable name is reassigned to new data. This allows data to be shared among all cluster components.
+
+Lazy processing - Spark does not perform transformations until an action is called, allowing spark to perform the most efficient operations to achieve the desired result.
