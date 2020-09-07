@@ -1,5 +1,3 @@
-# code here for reference, won't run as don't have access to csv
-
 # Load the CSV file
 aa_dfw_df = spark.read.format('csv').options(Header=True).load('AA_DFW_2018.csv.gz')
 
