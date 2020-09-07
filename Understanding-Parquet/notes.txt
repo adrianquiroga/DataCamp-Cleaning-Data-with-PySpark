@@ -1,0 +1,17 @@
+Common issues with CSV files:
+No defined schema.
+Nested data requires special handling.
+Encoding formats are limited.
+
+Spark specific issues with CSV:
+Slow to parse - cannot be shared with workers across process.
+No predicate pushdown (Ordering tasks to do the least amount of work).
+Any intermediate use requires redefining schema which would require significant work.
+
+Parquet:
+Compressed columnar data format developed for use in hadoop based systems.
+Structured so that data is in chunks, allowing efficient read/write operations without processing entire file.
+Supports predicate pushdown which makes parquet the optimal format for Spark.
+Automatically include schema and handle data encoding, which is good for intermediate or on disc representation of processed data.
+Binary format so can only be used with proper tools.
+Good for SQL operations.
