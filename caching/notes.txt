@@ -1,0 +1,22 @@
+Caching refers to storing DataFrames in memory or on disk of the processing nodes in a cluster.
+This improves the speed on subsequent transformations/actions as the data likely does not need to be retrieved from the original data source.
+Using caching reduces the resource utilization of the cluster; less need to access storage, networking and cpu of spark nodes as the data is likely already present.
+
+Disadvantages of caching include:
+Very large datasets may not fit in memory.
+If a dataset does not stay cached in memory it may be persisted to disk. Depending on disk integration of spark cluster this may not be a large performance improvement. If reading from local network resource and have slow local disk I/O it may be better to avoid caching objects.
+Lifetime of cached object is not gauranteed. Spark handles regenerating dataframes automatically which can cause delays in processing.
+
+Caching can be useful if dataframe is used more than once.
+
+Try caching dataframe at various points in pipeline and see if performance improves.
+
+Try to cache in memory and SSD and NVMe storage.
+
+Local hard drives can be useful if processing large dataframes that require a lot of steps to degenerate, or must be accessed over internet.
+
+If caching doesn't work try intermediate parquet representations. These can provided checkpoints if job fails mid task and can be combined with caching for improved performance.
+
+Can manually stop caching a dataframe when finished which frees up cache resources for other dataframes.
+
+Cache is a transformation, so nothing cached until an action is called.
