@@ -1,0 +1,15 @@
+Spark breaks dataframes up into partitions (Chunks of data).
+
+Partition size can vary but it's good practise to keep partition size equal.
+
+Transformations are lazy.
+
+Spark can re-order transformations for best performance which is usually unnoticable but can cause unexpected behaviour (E.g. IDs being added after other transformations being completed).
+
+Relational databases commonly use unique IDs.
+
+IDs are not very parallel in nature. As the values are given out sequentially, if there are multiple workers they must all refer to a common source for the next entry. This is a problem for distributed platforms such as Spark.
+
+Spark has a built in function called monotonically increasing IDs. They provide an integer (64-bit) ID that increases in value and is unique. Not necessarily sequential. Completely parallel. Each partition is allocated up to 8.4 billion IDs that can be assigned, with 2.1 billion possible groups, none of which overlap.
+
+Always remember that spark is lazy and so transformations are occasionally out of order. If performing a join, ID may be assigned after the join. Test transformations!
