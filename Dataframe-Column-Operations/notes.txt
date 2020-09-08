@@ -1,0 +1,10 @@
+import pyspark.sql.functions as F
+
+Can create intermediary columns e.g.:
+voter_df.withColumn('splits', F.split('name', ' '))
+will return a list of words in a column called splits, which has been split using the space character.
+
+Can cast to other types e.g.:
+voter_df.withColumn('year', voter_df['_c4'].cast(IntegerType()))
+
+ArrayType() columns analogous to lists
