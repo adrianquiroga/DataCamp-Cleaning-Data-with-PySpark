@@ -1,0 +1,9 @@
+If / then / else can lead to serious performance degradation as each row of a dataframe would be evaluated independently.
+
+Spark has built in, optimized conditional clasues:
+.when()
+.otherwise()
+
+Usage:
+.when(<if condition>, <then x>)
+.otherwise() is like else

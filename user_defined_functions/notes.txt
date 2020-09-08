@@ -1,0 +1,3 @@
+UDF - User defined function
+
+UDF is a python method that is called via the pyspark.sql.functions.udf method. The result is stored as a variable and can be called like a normal Spark function.
