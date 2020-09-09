@@ -1,0 +1,17 @@
+Spark clusters made up of two types of processes:
+One driver process.
+As many worker processes as required.
+
+Driver process handles task assignments that result from workers.
+Workers typically handle transformation / actions. Once assigned tasks they operate fairly independantly and report results back to driver.
+
+When importing, more objects is better than larger ones as this can be split up between more workers.
+
+Spark performs better if objects are of similar size.
+
+Well-defined schemas drastically improve import performance as they prevent data being read multiple times and provides validation on import.
+
+How to split objects into smaller objects:
+Can use OS utilities such as split, cut and awk.
+Can use custom scripts.
+If using dataframe often, read in file and write out to Parquet.
