@@ -1,0 +1,22 @@
+Spark has many configuration settings, which can be modified to suit the specific needs of the cluster.
+
+Spark clusters can be:
+Single node - Deploying all components on a single system.
+Standalone - With dedicated machines as the drivers and workers.
+Managed - Handled by a third part cluster manager such as YARN, Mesos or Kubernetes.
+
+One driver per spark cluster.
+Driver responsible for several things:
+Handling task assignment to various nodes / processes in cluster.
+Consolidating results from other processes in cluster.
+Handles any access to shared data and verifies each worker process has the necessary resources.
+
+Given importance of driver, it's often worth increasing specifications of node compared to other systems e.g.:
+Doubling memory (Driver should have double memory of worker). Useful for task monitoring and data consolidation tasks.
+Fast local storage useful for running spark.
+
+Spark worker handles running task assigned by driver, and communicates results back to driver.
+Ideally, workers has access to all code, data and resources required for task. If any are unavailable, the worker must pause to obtain the resources.
+More worker nodes is often better than larger nodes, which is especially obvious during import and export operations as there are more amchines available.
+Test to find correct balance for workload.
+Workers can make use of fast local storage for caching and storing files etc.
