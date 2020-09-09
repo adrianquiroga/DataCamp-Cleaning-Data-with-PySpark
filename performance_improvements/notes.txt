@@ -1,0 +1,20 @@
+.explain() can tell us what operations are happening under the hood.
+
+Shuffling - The moving of data fragments to various workers as required to complete certain tasks.
+
+Shuffling:
+Hides complexity from user which is useful, as users do not have to know which nodes have what data.
+Can be slow to complete necessary transfers, especially if some nodes require all data.
+Lowers overall throughput of cluster as workers must spend time waiting for data to transfer. This limits amount of available workers for remaining tasks.
+Often necessary, but try to minimize.
+
+To limit shuffling:
+Limit use of .repartition(num_partitions) as it requires full shuffle of data between nodes and processes, which is costly. To reduce number of partitions, use coalesce(num_partitions) instead.
+Calling .join() indscriminately can often cause shuffle operations leading to increased cluster load and slower processing times. Use .broadcast() instead.
+Check if it's worth the time to limit shuffling; initial code speed may be acceptable.
+
+Broadcasting:
+Provides a copy of an object to each worker which;
+Prevents undue / excess communication between nodes. This limits data shuffles and makes it more likely for nodes to fulfil tasks independently.
+Can drastically speed up .join() operations, especially if one of the dataframes being joined is much smaller than the other.
+Can slow operations when using very small dataframes or if you broadcast larger dataframe in a join. Spark often optimises this automatically.
