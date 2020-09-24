@@ -1,0 +1,8 @@
+Data pipeline:
+Set of steps to process data from source(s) to final output.
+Can span many systems.
+
+Often consists of inputs, transformations and the outputs of the steps.
+
+Input(s) -> transformations -> output(s) -> validation -> analysis
+

@@ -1,0 +1,11 @@
+Spark's CSV parser:
+Automatically removes blank lines unless instructed otherwise.
+Comments can be removed using optional argument:
+df = spark.read.csv('datafile.csv.gz', comment='#')
+Handles header films, defined via argument. Ignored if no schema is defined.
+df = spark.read.csv('datafile.csv.gz', header='True')
+
+When importing CSV data into spark:
+Automatically create columns in DataFrame based on sep argument (If sep not defined default is ,):
+df = spark.read.csv('datafile.csv.gz', sep=',')
+Will still succeed if sep character is not in string, will store this data in column named _c0 by default. This allows proper handling of nested seperators.
